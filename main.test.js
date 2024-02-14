@@ -1,5 +1,7 @@
-// Test one: hit function works as expected (updates number of hits on a given ship)
+import ship from './ship';
 
+// Test one: hit function works as expected (updates number of hits on a given ship)
+jest.mock('./main')
 
 // Test two: ocean function works as expected (this ensures length is working) and ensures sunk is true
 
