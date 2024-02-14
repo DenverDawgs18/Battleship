@@ -1,9 +1,24 @@
-import ship from './ship';
+const ship = require('./ship');
+const gameboard = require('./gameboard')
 
 // Test one: hit function works as expected (updates number of hits on a given ship)
-jest.mock('./main')
 
+
+
+test('Check that hit was called', () => {
+    const shh = new ship (3);
+    shh.hit()
+    expect(shh.hits).toBe(1)
+}
+)
 // Test two: ocean function works as expected (this ensures length is working) and ensures sunk is true
+test('ocean works as expected', () => {
+    const shh = new ship(2);
+    shh.hit();
+    shh.hit();
+    expect(shh.sunk).toBe(true)
+
+})
 
 // Those are the only tests for the ship class (using classes because they look more like python which is my fav lang)
 
@@ -12,6 +27,15 @@ jest.mock('./main')
 // Test three p o:  make sure gameboards are placing ships at a coordinate
 // This is going to make gameboards implemented as a 2d array and at those coordinates it will be replaced by something
 // that says ship X 
+test('ship is placed at a coordinate', () => {
+    let g = new gameboard ();
+    g.placeShip((1, 1), (3, 1));
+    expect(g.board[0][0]).toBe('ship');
+    expect(g.board[1][0]).toBe('ship');
+    expect(g.board[2][0]).toBe('ship');
+    expect(g.ships.length).toBe(1);
+
+})
 
 
 // Test four: gameboards cannot place ships if there is a ship there 
