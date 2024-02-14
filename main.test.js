@@ -27,7 +27,7 @@ test('ocean works as expected', () => {
 // Test three p o:  make sure gameboards are placing ships at a coordinate
 // This is going to make gameboards implemented as a 2d array and at those coordinates it will be replaced by something
 // that says ship X 
-test('ship is placed at a coordinate', () => {
+test.only('ship is placed at a coordinate', () => {
     let g = new gameboard ();
     g.placeShip((1, 1), (3, 1));
     expect(g.board[0][0]).toBe('ship');
@@ -39,7 +39,11 @@ test('ship is placed at a coordinate', () => {
 
 
 // Test four: gameboards cannot place ships if there is a ship there 
-
+test('ship cannot place ship where one is', () => {
+    let g = new gameboard ();
+    g.placeShip((1,1), (3,1));
+    expect(g.placeShip((1,1), (1, 3))).toThrow(TypeError)
+})
 
 // Test five: recieveAttack works as expected - takes a pair of coords, checks if a ship is hit. This is the hit case
 
