@@ -23,13 +23,18 @@ test('ocean works as expected', () => {
 // Those are the only tests for the ship class (using classes because they look more like python which is my fav lang)
 
 
-
+// other test make sure board is created properly
+test('board created properly', () => {
+    let g = new gameboard ();
+    g.createArr()
+    expect(g.board.length).toBe(10)
+})
 // Test three p o:  make sure gameboards are placing ships at a coordinate
 // This is going to make gameboards implemented as a 2d array and at those coordinates it will be replaced by something
 // that says ship X 
 test.only('ship is placed at a coordinate', () => {
     let g = new gameboard ();
-    g.placeShip((1, 1), (3, 1));
+    g.placeShip([1, 1], [3, 1]);
     expect(g.board[0][0]).toBe('ship');
     expect(g.board[1][0]).toBe('ship');
     expect(g.board[2][0]).toBe('ship');
@@ -41,8 +46,8 @@ test.only('ship is placed at a coordinate', () => {
 // Test four: gameboards cannot place ships if there is a ship there 
 test('ship cannot place ship where one is', () => {
     let g = new gameboard ();
-    g.placeShip((1,1), (3,1));
-    expect(g.placeShip((1,1), (1, 3))).toThrow(TypeError)
+    g.placeShip([1,1], [3,1]);
+    expect(g.placeShip([1,1], [3,1])).toThrow(TypeError)
 })
 
 // Test five: recieveAttack works as expected - takes a pair of coords, checks if a ship is hit. This is the hit case
