@@ -6,6 +6,7 @@ class gameboard{
         this.board = [];
         this.ships = [];
         this.misses = [];
+        this.allOcean = false;
     }
     createArr = () => {
         for(let i = 0; i < 10; i++){
@@ -33,10 +34,10 @@ class gameboard{
             this.board[coord1[0]][coord1[1] + i] = 'ship' + `${this.ships.length}`;
         }
         if(horDelta !== 0){
-            this.ships.push(new ship(horDelta));
+            this.ships.push(new ship(horDelta + 1));
         }
         if(vertDelta !== 0){
-            this.ships.push(new ship(vertDelta));
+            this.ships.push(new ship(vertDelta + 1));
         }
     }
     recieveAttack = (coord) => {
@@ -50,6 +51,19 @@ class gameboard{
             this.misses.push(coord)
         }
 
+    }
+    allSunk = () => {
+        let check = true;
+        for(const shh of this.ships){
+            if(!shh.sunk){
+                this.allOcean = false;
+                check = false;
+            }
+        }
+        if(check){
+            this.allOcean = true;
+        }
+        
     }
 }
 

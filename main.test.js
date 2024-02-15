@@ -1,5 +1,5 @@
 const ship = require('./ship');
-const gameboard = require('./gameboard')
+const gameboard = require('./gameboard');
 
 // Test one: hit function works as expected (updates number of hits on a given ship)
 
@@ -70,5 +70,28 @@ test('miss case for recieveAttack works as expected', () => {
     expect(g.misses[0]).toStrictEqual([0,8]);
 })
 // Test 6: Gameboard properly determines if all of its ships are in the ocean
-
-
+test('allSunk true case works', () => {
+    let g = new gameboard ();
+    g.createArr();
+    g.placeShip([0,0], [1,0]);
+    g.recieveAttack([0,0]);
+    g.recieveAttack([1,0]);
+    g.allSunk();
+    expect(g.allOcean).toBe(true);
+})
+test('allSunk false case works', () => {
+    let g = new gameboard ();
+    g.createArr();
+    g.placeShip([0,0], [2,0]);
+    g.recieveAttack([0,0]);
+    g.allSunk();
+    expect(g.allOcean).toBe(false);
+})
+test('player can attack', () => {
+    let p = new player ();
+    let g = new gameboard ();
+    g.createArr();
+    g.placeShip([0,0],[2,0])
+    p.attack([0,0], g);
+    expect(g.ships[0].hits).toBe(1);
+})
