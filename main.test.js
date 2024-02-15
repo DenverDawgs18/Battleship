@@ -88,11 +88,18 @@ test('allSunk false case works', () => {
     g.allSunk();
     expect(g.allOcean).toBe(false);
 })
-test.only('player can attack', () => {
+test('player can attack', () => {
     let p = new player ();
     let g = new gameboard ();
     g.createArr();
     g.placeShip([0,0],[2,0])
     p.attack([0,0], g);
     expect(g.ships[0].hits).toBe(1);
+})
+test('computer moves work', () => {
+    let p = new player ();
+    let g = new gameboard ();
+    g.createArr();
+    p.randomAttack(g);
+    expect(p.illegalMoves.length).toBe(1);
 })
