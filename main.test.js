@@ -1,6 +1,6 @@
-const ship = require('./ship');
-const gameboard = require('./gameboard');
-const player = require('./player')
+const ship = require('./src/ship');
+const gameboard = require('./src/gameboard');
+const player = require('./src/player')
 
 // Test one: hit function works as expected (updates number of hits on a given ship)
 
@@ -43,7 +43,13 @@ test('ship is placed at a coordinate', () => {
     expect(g.ships.length).toBe(1);
 
 })
-
+test('horizontal ship works', () => {
+    let g = new gameboard();
+    g.createArr();
+    g.placeShip([0,0],[0,2])
+    expect(g.board[0][0]).toBe('ship0')
+    expect(g.board[0][1]).toBe('ship0')
+})
 
 // Test four: gameboards cannot place ships if there is a ship there 
 test('ship cannot place ship where one is', () => {

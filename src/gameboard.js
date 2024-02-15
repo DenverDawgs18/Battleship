@@ -1,4 +1,4 @@
-const ship = require('./ship')
+const ship = require('./ship');
 
 class gameboard{
     
@@ -24,14 +24,15 @@ class gameboard{
         for(let i = 0; i <= horDelta; i++){
             this.board[coord1[0] + i][coord1[1]] = 'ship' + `${this.ships.length}`;
         }
-        let vertDelta  = Math.abs(coord1[1] - coord2[1])
-        for(let i = 0; i < vertDelta; i++){
-            if(this.board[coord1[0]][coord1[1] + i] !== ""){
+        let vertDelta  = Math.abs(coord1[1] - coord2[1]);
+        for(let i = 0; i <= vertDelta; i++){
+            if(this.board[coord1[0]][coord1[1] + i] = 'ship' + `${this.ships.length}` !== ""){
+                this.board[coord1[0]][coord1[1] + i] = 'ship' + `${this.ships.length}`;
+            }
+            else{
                 throw new Error()
             }
-        }
-        for(let i = 0; i <= vertDelta; i++){
-            this.board[coord1[0]][coord1[1] + i] = 'ship' + `${this.ships.length}`;
+            
         }
         if(horDelta !== 0){
             this.ships.push(new ship(horDelta + 1));
