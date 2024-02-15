@@ -45,7 +45,7 @@ test('ship is placed at a coordinate', () => {
 
 
 // Test four: gameboards cannot place ships if there is a ship there 
-test.only('ship cannot place ship where one is', () => {
+test('ship cannot place ship where one is', () => {
     let g = new gameboard ();
     g.createArr()
     g.placeShip([0,0], [2,0])
@@ -53,9 +53,22 @@ test.only('ship cannot place ship where one is', () => {
 })
 
 // Test five: recieveAttack works as expected - takes a pair of coords, checks if a ship is hit. This is the hit case
-
+test('hit case for recieveAttack works as expected', () => {
+    let g = new gameboard ();
+    g.createArr();
+    g.placeShip([0,0], [2,0]);
+    g.recieveAttack([0,0]);
+    expect(g.ships[0].hits).toBe(1)
+})
 // Test fiveB: recieveAttack works when the attack misses
-
+test('miss case for recieveAttack works as expected', () => {
+    let g = new gameboard ();
+    g.createArr();
+    g.placeShip([0,0], [2,0]);
+    g.recieveAttack([0,8]);
+    expect(g.misses.length).toBe(1);
+    expect(g.misses[0]).toStrictEqual([0,8]);
+})
 // Test 6: Gameboard properly determines if all of its ships are in the ocean
 
 

@@ -5,6 +5,7 @@ class gameboard{
     constructor(){
         this.board = [];
         this.ships = [];
+        this.misses = [];
     }
     createArr = () => {
         for(let i = 0; i < 10; i++){
@@ -37,6 +38,18 @@ class gameboard{
         if(vertDelta !== 0){
             this.ships.push(new ship(vertDelta));
         }
+    }
+    recieveAttack = (coord) => {
+        if (this.board[coord[0]][coord[1]] !== ""){
+            let s = this.board[coord[0]][coord[1]];
+            s = Number(s.charAt(s.length -1))
+            let shi = this.ships[s];
+            shi.hit()
+        }
+        else{
+            this.misses.push(coord)
+        }
+
     }
 }
 
