@@ -1,5 +1,6 @@
 const ship = require('./ship');
 const gameboard = require('./gameboard');
+const player = require('./player')
 
 // Test one: hit function works as expected (updates number of hits on a given ship)
 
@@ -87,7 +88,7 @@ test('allSunk false case works', () => {
     g.allSunk();
     expect(g.allOcean).toBe(false);
 })
-test('player can attack', () => {
+test.only('player can attack', () => {
     let p = new player ();
     let g = new gameboard ();
     g.createArr();
