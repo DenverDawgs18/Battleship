@@ -1,0 +1,33 @@
+1. Change from saying 'ship1' to it just being blue
+
+2. When the blue is clicked it turns red
+2b) background is changed from white to gray
+
+3. When the gray is clicked it turns white
+
+4. Each of the divs gets a dataset value that can be correlated to the board it is displaying
+
+5. Implement the logic for when a div is clicked its dataset is read and the board recieves an attack based off that
+
+6. Get rid of the safety net of the blue 
+
+7. Get logic for if the attack is a hit the corresponding cell is turned red 
+
+8. Get logic for if the attack is a miss the corresponding cell is turned white
+
+9. Apply that same logic to a random computer move (can be called from console or j once in the code to test)
+
+10. Reintroduce the game loop using the new functions that have been written 
+
+11. Investigate drag and drop for the ships rather than them being the same every time
+
+12. Work on CPU intelligence -- implement logic for attackign adjacent squares (could make  a next moves array
+and if its not empty run one of those)
+
+THATS ALL YOU NEED FOR THE MINIMUM 
+1,2,3,4,6,9,10 are all easy
+
+5,7,8,11,12 could be hard but we have blown through every notion of that throughout this project
+
+
+13. Make it look nice
