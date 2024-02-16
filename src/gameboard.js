@@ -47,6 +47,7 @@ class gameboard{
             s = Number(s.charAt(s.length -1))
             let shi = this.ships[s];
             shi.hit()
+            this.allSunk()
         }
         else{
             this.misses.push(coord)

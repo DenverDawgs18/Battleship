@@ -13,7 +13,7 @@ class player{
         this.attack(coord, board)
     }
     getRandom11 = () => {
-        return Math.floor(Math.random() * 11)
+        return Math.floor(Math.random() * 10)
     }
 }
 
