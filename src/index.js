@@ -24,7 +24,6 @@ let computerBoard = new gameboard();
 computerBoard.createArr();
 computerBoard.placeShip([0,0], [2,0]);
 computerBoard.placeShip([0,2], [4,2])
-console.log(playerBoard.board, computerBoard.board)
 let check = true;
 let playa = new player();
 let computer = new player();
@@ -43,7 +42,8 @@ let computer = new player();
 //             break;
 //         }
 //     }}
-
+let playerCells = [];
+let computerCells = [];
 const displayManager = (function () {
     const pwrapper = document.querySelector('.pwrapper');
     const cwrapper = document.querySelector('.cwrapper')
@@ -53,16 +53,17 @@ const displayManager = (function () {
             row.classList.add('row');
             for(let j = 0; j < 10; j++){
                 let n = document.createElement("div");
+                n.dataset.one = i;
+                n.dataset.two = j;
+                playerCells.push(n)
                 if(playerBoard.board[i][j]){
                     n.style.backgroundColor = '#ADD8E6';
                     n.addEventListener('click', () => {
-                        n.style.backgroundColor = '#FF7F7F';
+                        
                     })
                 }
                 else{
-                    n.addEventListener('click', () => {
-                        n.style.backgroundColor = 'white';
-                    })
+            
                 }
                 n.classList.add('cell')
                 row.appendChild(n)
@@ -74,10 +75,17 @@ const displayManager = (function () {
             row.classList.add('row')
             for(let j = 0; j < 10; j++){
                 let n = document.createElement("div");
+                n.dataset.one = i;
+                n.dataset.two = j;
+                computerCells.push(n)
                 if(computerBoard.board[i][j]){
-                    n.style.backgroundColor = '#ADD8E6';
+                    n.style.backgroundColor = 'gray';
                     n.addEventListener('click', () => {
                         n.style.backgroundColor = '#FF7F7F';
+                        computerBoard.recieveAttack([n.dataset.one, n.dataset.two]);
+                        if(computerBoard.allOcean){
+                            alert('player has won')
+                        }
                     })
                 }
                 else{
@@ -95,3 +103,15 @@ const displayManager = (function () {
 })();
 displayManager.displayBoards()
 
+function disableComputer(){
+    for(let i = 0; i < computerCells.length; i++){
+        computerCells[i].style.pointerEvents = "none";
+    }
+}
+disableComputer()
+function enableComputer(){
+    for(let i = 0; i < computerCells.length; i++){
+        computerCells[i].style.pointerEvents = "auto";
+    }
+}
+enableComputer()

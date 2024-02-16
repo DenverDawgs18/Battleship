@@ -9,7 +9,7 @@
 
 5. Implement the logic for when a div is clicked its dataset is read and the board recieves an attack based off that
 
-6. Get rid of the safety net of the blue 
+6. Get rid of the safety net of the blue DONE
 
 7. Get logic for if the attack is a hit the corresponding cell is turned red 
 
