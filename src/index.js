@@ -23,7 +23,7 @@ playerBoard.placeShip([0,2],[2,2])
 let computerBoard = new gameboard();
 computerBoard.createArr();
 computerBoard.placeShip([0,0], [2,0]);
-computerBoard.placeShip([0,2], [2,2])
+computerBoard.placeShip([0,2], [4,2])
 console.log(playerBoard.board, computerBoard.board)
 let check = true;
 let playa = new player();
@@ -53,7 +53,17 @@ const displayManager = (function () {
             row.classList.add('row');
             for(let j = 0; j < 10; j++){
                 let n = document.createElement("div");
-                n.textContent = playerBoard.board[i][j];
+                if(playerBoard.board[i][j]){
+                    n.style.backgroundColor = '#ADD8E6';
+                    n.addEventListener('click', () => {
+                        n.style.backgroundColor = '#FF7F7F';
+                    })
+                }
+                else{
+                    n.addEventListener('click', () => {
+                        n.style.backgroundColor = 'white';
+                    })
+                }
                 n.classList.add('cell')
                 row.appendChild(n)
             }
@@ -64,7 +74,17 @@ const displayManager = (function () {
             row.classList.add('row')
             for(let j = 0; j < 10; j++){
                 let n = document.createElement("div");
-                n.textContent = computerBoard.board[i][j];
+                if(computerBoard.board[i][j]){
+                    n.style.backgroundColor = '#ADD8E6';
+                    n.addEventListener('click', () => {
+                        n.style.backgroundColor = '#FF7F7F';
+                    })
+                }
+                else{
+                    n.addEventListener('click', () => {
+                        n.style.backgroundColor = 'white';
+                    })
+                }
                 n.classList.add('cell')
                 row.appendChild(n)
             }

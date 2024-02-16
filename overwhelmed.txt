@@ -1,9 +1,9 @@
-1. Change from saying 'ship1' to it just being blue
+1. Change from saying 'ship1' to it just being blue DONE
 
-2. When the blue is clicked it turns red
-2b) background is changed from white to gray
+2. When the blue is clicked it turns red DONE
+2b) background is changed from white to gray DONE
 
-3. When the gray is clicked it turns white
+3. When the gray is clicked it turns white DONE
 
 4. Each of the divs gets a dataset value that can be correlated to the board it is displaying
 

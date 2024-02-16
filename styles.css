@@ -1,5 +1,6 @@
 .pwrapper, .cwrapper{
     display: grid;
+    background-color: gray;
 }
 .pwrapper{
     margin-right: 20px;
@@ -9,6 +10,7 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
+
 }
 
 .row{
