@@ -114,31 +114,30 @@ function enableComputer(){
     }
 }
 function computerMove(){
-    for(let i = 0; i < 100; i++){
-        computer.randomAttack(playerBoard)
-    }
+    computer.randomAttack(playerBoard)
+    let whites = 0;
+    let reds  = 0;
     for(let i = 0; i < playerBoard.misses.length; i++){
-        console.log(playerBoard.misses[i][0])
-        console.log(playerBoard.misses[i][1])
         for(let j = 0; j < playerCells.length; j++){
             if(playerCells[j].dataset.hit == 'false' && 
             playerBoard.misses[i][0] == playerCells[j].dataset.one && playerBoard.misses[i][1] == playerCells[j].dataset.two){
-                
+                whites++
                 playerCells[j].style.backgroundColor = 'white'
             }
         }
     }
     for(let i = 0; i < playerBoard.hits.length; i++){
-        console.log(playerBoard.hits[i][0])
-        console.log(playerBoard.hits[i][1])
         for(let j = 0; j < playerCells.length; j++){
             if(playerCells[j].dataset.hit == 'true' && 
             playerBoard.hits[i][0] == playerCells[j].dataset.one && playerBoard.hits[i][1] == playerCells[j].dataset.two){
+                reds++
                 playerCells[j].style.backgroundColor = 'red'
             }
         }
     }
+ 
 
 }
 
-computerMove()
+
+
