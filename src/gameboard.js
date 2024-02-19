@@ -6,6 +6,7 @@ class gameboard{
         this.board = [];
         this.ships = [];
         this.misses = [];
+        this.hits = [];
         this.allOcean = false;
     }
     createArr = () => {
@@ -48,6 +49,7 @@ class gameboard{
             let shi = this.ships[s];
             shi.hit()
             this.allSunk()
+            this.hits.push(coord)
         }
         else{
             this.misses.push(coord)

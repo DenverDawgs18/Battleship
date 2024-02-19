@@ -55,17 +55,17 @@ const displayManager = (function () {
                 let n = document.createElement("div");
                 n.dataset.one = i;
                 n.dataset.two = j;
-                playerCells.push(n)
+                
                 if(playerBoard.board[i][j]){
                     n.style.backgroundColor = '#ADD8E6';
-                    n.addEventListener('click', () => {
-                        
-                    })
+                    n.dataset.hit = true;
+
                 }
                 else{
-            
+                    n.dataset.hit = false;
                 }
                 n.classList.add('cell')
+                playerCells.push(n)
                 row.appendChild(n)
             }
             pwrapper.appendChild(row)
@@ -108,10 +108,37 @@ function disableComputer(){
         computerCells[i].style.pointerEvents = "none";
     }
 }
-disableComputer()
 function enableComputer(){
     for(let i = 0; i < computerCells.length; i++){
         computerCells[i].style.pointerEvents = "auto";
     }
 }
-enableComputer()
+function computerMove(){
+    for(let i = 0; i < 100; i++){
+        computer.randomAttack(playerBoard)
+    }
+    for(let i = 0; i < playerBoard.misses.length; i++){
+        console.log(playerBoard.misses[i][0])
+        console.log(playerBoard.misses[i][1])
+        for(let j = 0; j < playerCells.length; j++){
+            if(playerCells[j].dataset.hit == 'false' && 
+            playerBoard.misses[i][0] == playerCells[j].dataset.one && playerBoard.misses[i][1] == playerCells[j].dataset.two){
+                
+                playerCells[j].style.backgroundColor = 'white'
+            }
+        }
+    }
+    for(let i = 0; i < playerBoard.hits.length; i++){
+        console.log(playerBoard.hits[i][0])
+        console.log(playerBoard.hits[i][1])
+        for(let j = 0; j < playerCells.length; j++){
+            if(playerCells[j].dataset.hit == 'true' && 
+            playerBoard.hits[i][0] == playerCells[j].dataset.one && playerBoard.hits[i][1] == playerCells[j].dataset.two){
+                playerCells[j].style.backgroundColor = 'red'
+            }
+        }
+    }
+
+}
+
+computerMove()
