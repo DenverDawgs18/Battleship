@@ -27,21 +27,6 @@ computerBoard.placeShip([0,2], [4,2])
 let check = true;
 let playa = new player();
 let computer = new player();
-
-// while(check){
-//     let Pratt = prompt("Player attack: ").split(',');
-//     playa.attack(Pratt, computerBoard);
-//     if(computerBoard.allOcean === true){
-//         alert('player has won')
-//         break;
-//     }
-//     else{
-//         computer.randomAttack(playerBoard);
-//         if(playerBoard.allOcean === true){
-//             alert('computer has won')
-//             break;
-//         }
-//     }}
 let playerCells = [];
 let computerCells = [];
 const displayManager = (function () {
@@ -82,15 +67,13 @@ const displayManager = (function () {
                     n.style.backgroundColor = 'gray';
                     n.addEventListener('click', () => {
                         n.style.backgroundColor = '#FF7F7F';
-                        computerBoard.recieveAttack([n.dataset.one, n.dataset.two]);
-                        if(computerBoard.allOcean){
-                            alert('player has won')
-                        }
+                        game(n.dataset.one, n.dataset.two)
                     })
                 }
                 else{
                     n.addEventListener('click', () => {
                         n.style.backgroundColor = 'white';
+                        game(n.dataset.one, n.dataset.two)
                     })
                 }
                 n.classList.add('cell')
@@ -139,5 +122,15 @@ function computerMove(){
 
 }
 
-
-
+function game(one, two){
+    disableComputer();
+    computerBoard.recieveAttack([Number(one), Number(two)]);
+    if(computerBoard.allOcean){
+        alert('player has won')
+    }
+    computerMove();
+    if(playerBoard.allOcean){
+            alert('computer has won')
+        }
+    enableComputer();
+}
