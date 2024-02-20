@@ -27,12 +27,33 @@ const displayManager = (function () {
     const pwrapper = document.querySelector('.pwrapper');
     const cwrapper = document.querySelector('.cwrapper')
     const displayBoards = () => {
+        let Lrow = [];
+        
+        for(let i = 0; i < 10; i++){
+            let label = document.createElement('div');
+            label.textContent = String.fromCharCode(i + 65);
+            label.classList.add('label')
+            label.classList.add('vert');
+            Lrow.push(label)
+            
+        }
+        let labelRow = document.createElement('div');
+        labelRow.classList.add('row');
+        labelRow.classList.add('labelRow')
+        for(let i = 0; i < Lrow.length; i++){
+            labelRow.appendChild(Lrow[i]);
+        }
+        pwrapper.appendChild(labelRow)
+        
+
         for(let i = 0; i < 10; i++){
             let row = document.createElement('div');
             row.classList.add('row');
             let label = document.createElement('div');
             label.textContent = i;
+            label.classList.add('label')
             row.appendChild(label)
+
             for(let j = 0; j < 10; j++){
                 let n = document.createElement("div");
                 n.dataset.one = i;
@@ -52,9 +73,31 @@ const displayManager = (function () {
             }
             pwrapper.appendChild(row)
         }
+        let LCrow = [];
+        
+        for(let i = 0; i < 10; i++){
+            let label = document.createElement('div');
+            label.textContent = String.fromCharCode(i + 65);
+            label.classList.add('label')
+            label.classList.add('vert');
+            LCrow.push(label)
+            
+        }
+        let ClabelRow = document.createElement('div');
+        ClabelRow.classList.add('row');
+        ClabelRow.classList.add('labelRow')
+        for(let i = 0; i < LCrow.length; i++){
+            ClabelRow.appendChild(LCrow[i]);
+        }
+        cwrapper.appendChild(ClabelRow)
         for(let i = 0; i < 10; i++){
             let row = document.createElement('div');
-            row.classList.add('row')
+            row.classList.add('row');
+            let label = document.createElement('div');
+            label.textContent = i;
+            label.classList.add('label')
+            row.appendChild(label)
+
             for(let j = 0; j < 10; j++){
                 let n = document.createElement("div");
                 n.dataset.one = i;

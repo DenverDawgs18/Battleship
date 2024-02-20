@@ -12,8 +12,21 @@ body{
     height: 100vh;
 
 }
-
-
+.label{
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.labelRow{
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 20px;
+}
 .row{
     display: flex;
 }
