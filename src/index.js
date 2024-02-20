@@ -18,14 +18,8 @@ test for allOcean and end loop if true
 */
 let playerBoard = new gameboard();
 playerBoard.createArr();
-playerBoard.placeShip([0,0],[2,0]);
-playerBoard.placeShip([0,2],[2,2])
 let computerBoard = new gameboard();
 computerBoard.createArr();
-computerBoard.placeShip([0,0], [2,0]);
-computerBoard.placeShip([0,2], [4,2])
-let check = true;
-let playa = new player();
 let computer = new player();
 let playerCells = [];
 let computerCells = [];
@@ -36,6 +30,9 @@ const displayManager = (function () {
         for(let i = 0; i < 10; i++){
             let row = document.createElement('div');
             row.classList.add('row');
+            let label = document.createElement('div');
+            label.textContent = i;
+            row.appendChild(label)
             for(let j = 0; j < 10; j++){
                 let n = document.createElement("div");
                 n.dataset.one = i;
@@ -84,7 +81,7 @@ const displayManager = (function () {
     }
     return {displayBoards}
 })();
-displayManager.displayBoards()
+
 
 function disableComputer(){
     for(let i = 0; i < computerCells.length; i++){
@@ -121,8 +118,44 @@ function computerMove(){
  
 
 }
+function randomNum(num){
+    return Math.floor(Math.random() * num)
+}
+function randomCPUship(len){
+    let dir = randomNum(2) + 1;
+    if(dir === 1){
+        let check = true;
+        while (check){
+            try{
+                let coord1 = randomNum(11 - len);
+                let coord2 = randomNum(11)
+                let coord3  = coord1 + len - 1;
+                computerBoard.placeShip([coord1, coord2], [coord3, coord2])
+                check = false;
+            }
+            catch{
 
+            }
+        }
+    }
+    else if (dir === 2){
+        let check = true;
+        while (check){
+            try{
+                let coord1 = randomNum(11 - len);
+                let coord2 = randomNum(11)
+                let coord3  = coord1 + len - 1;
+                computerBoard.placeShip([coord2, coord1], [coord2, coord3])
+                check = false;
+            }
+            catch{
+
+            }
+        }
+    }
+}
 function game(one, two){
+    console.log('running')
     disableComputer();
     computerBoard.recieveAttack([Number(one), Number(two)]);
     if(computerBoard.allOcean){
@@ -134,3 +167,15 @@ function game(one, two){
         }
     enableComputer();
 }
+function main(){
+    randomCPUship(5)
+    randomCPUship(4)
+    randomCPUship(3)
+    randomCPUship(3)
+    randomCPUship(2)
+    displayManager.displayBoards()
+}
+main()
+
+// let coord1 = prompt("Coord 1");
+// console.log(coord1)

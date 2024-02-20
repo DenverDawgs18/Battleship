@@ -17,28 +17,28 @@ class gameboard{
     }
     placeShip = (coord1, coord2) => {
         let horDelta = Math.abs(coord1[0] - coord2[0]);
-        for(let i = 0; i < horDelta; i++){
-            if(this.board[coord1[0] + i][coord1[1]] !== ""){
-                throw new Error()
-            }
-        }
-        for(let i = 0; i <= horDelta; i++){
-            this.board[coord1[0] + i][coord1[1]] = 'ship' + `${this.ships.length}`;
-        }
-        let vertDelta  = Math.abs(coord1[1] - coord2[1]);
-        for(let i = 0; i <= vertDelta; i++){
-            if(this.board[coord1[0]][coord1[1] + i] = 'ship' + `${this.ships.length}` !== ""){
-                this.board[coord1[0]][coord1[1] + i] = 'ship' + `${this.ships.length}`;
-            }
-            else{
-                throw new Error()
-            }
-            
-        }
         if(horDelta !== 0){
+            for(let i = 0; i < horDelta; i++){
+                if(this.board[coord1[0] + i][coord1[1]] !== ""){
+                    throw new Error()
+                }
+            }
+            for(let i = 0; i <= horDelta; i++){
+                this.board[coord1[0] + i][coord1[1]] = 'ship' + `${this.ships.length}`;
+            }
             this.ships.push(new ship(horDelta + 1));
         }
+       
+        let vertDelta  = Math.abs(coord1[1] - coord2[1]);
         if(vertDelta !== 0){
+            for(let i = 0; i <= vertDelta; i++){
+                if(this.board[coord1[0]][coord1[1] + i] !== ""){
+                   throw new Error()
+                }
+            }
+            for(let i = 0; i <= vertDelta; i++){
+                this.board[coord1[0]][coord1[1] + i] = 'ship' + `${this.ships.length}`;
+            }
             this.ships.push(new ship(vertDelta + 1));
         }
     }

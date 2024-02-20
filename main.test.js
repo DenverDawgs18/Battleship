@@ -58,6 +58,14 @@ test('ship cannot place ship where one is', () => {
     g.placeShip([0,0], [2,0])
     expect(() => g.placeShip([0,0], [2,0])).toThrow()
 })
+test('ship cannot place ship where one is', () => {
+    let g = new gameboard ();
+    g.createArr()
+    g.placeShip([0,0], [0,2])
+    expect(() => g.placeShip([0,0], [0,2])).toThrow()
+})
+
+
 
 // Test five: recieveAttack works as expected - takes a pair of coords, checks if a ship is hit. This is the hit case
 test('hit case for recieveAttack works as expected', () => {
