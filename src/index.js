@@ -172,7 +172,7 @@ function randomCPUship(len){
             try{
                 let coord1 = randomNum(11 - len);
                 let coord2 = randomNum(11)
-                let coord3  = coord1 + len - 1;
+                let coord3  = coord1 + len - 1; 
                 computerBoard.placeShip([coord1, coord2], [coord3, coord2])
                 check = false;
             }

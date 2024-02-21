@@ -7,12 +7,35 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="pwrapper">
-
+    <div class="ships">
+        <form class="place">
+            <label for="startingCoord">*Starting Coordinate:</label>
+            <input type="text" name="startingCoord" id="startingCoord">
+            <label for="direction">*Direction:</label>
+            <label for="horizontal">Horizontal</label>
+            <input type="radio" name="direction" id="horizontal" value="horizontal">
+            <label for="vertical">Vertical</label>
+            <input type="radio" name="direction" id="vertical" value="vertical">
+            <label for="len">*Length</label>
+            <select name="len" id="len">*Length
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
     </div>
-    <div class="cwrapper">
+    <div class="container">
+        <div class="pwrapper">
 
+        </div>
+        <div class="cwrapper">
+    
+        </div>
     </div>
+    
     <script src="main.js"></script>
 </body>
 </html>
