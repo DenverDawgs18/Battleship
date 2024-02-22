@@ -118,7 +118,7 @@ const displayManager = (function () {
                             game(n.dataset.one, n.dataset.two)
                         }
                         
-                    })
+                    },{once: true})
                 }
                 else{
                     n.addEventListener('click', () => {
@@ -127,7 +127,7 @@ const displayManager = (function () {
                             game(n.dataset.one, n.dataset.two)
                         }
                         
-                    })
+                    }, {once: true})
                 }
                 n.classList.add('cell')
                 row.appendChild(n)
@@ -211,7 +211,7 @@ function randomCPUship(len){
     }
 }
 function game(one, two){
-        console.log('running')
+        
         disableComputer();
         computerBoard.recieveAttack([Number(one), Number(two)]);
         if(computerBoard.allOcean){
@@ -232,7 +232,7 @@ function main(){
     randomCPUship(2)
     displayManager.displayBoards()
 }
-displayManager.displayBoards()
+main()
 disableComputer()
 let form = document.querySelector('.place');
 form.addEventListener('submit', (e) => {
