@@ -1,6 +1,5 @@
 .pwrapper, .cwrapper{
     display: grid;
-    background-color: gray;
 }
 .pwrapper{
     margin-right: 20px;

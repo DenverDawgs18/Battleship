@@ -17,6 +17,7 @@ otherwise have player's board be attacked using player.randomAttack
 test for allOcean and end loop if true
 */
 let playerBoard = new gameboard();
+let counter = 0;
 playerBoard.createArr();
 let computerBoard = new gameboard();
 computerBoard.createArr();
@@ -26,6 +27,10 @@ let computerCells = [];
 const displayManager = (function () {
     const pwrapper = document.querySelector('.pwrapper');
     const cwrapper = document.querySelector('.cwrapper')
+    const clearBoard = () => {
+        pwrapper.replaceChildren()
+        cwrapper.replaceChildren()
+    }
     const displayBoards = () => {
         let Lrow = [];
         
@@ -50,7 +55,7 @@ const displayManager = (function () {
             let row = document.createElement('div');
             row.classList.add('row');
             let label = document.createElement('div');
-            label.textContent = i;
+            label.textContent = i + 1;
             label.classList.add('label')
             row.appendChild(label)
 
@@ -65,6 +70,7 @@ const displayManager = (function () {
 
                 }
                 else{
+                    n.style.backgroundColor = 'gray';
                     n.dataset.hit = false;
                 }
                 n.classList.add('cell')
@@ -94,7 +100,7 @@ const displayManager = (function () {
             let row = document.createElement('div');
             row.classList.add('row');
             let label = document.createElement('div');
-            label.textContent = i;
+            label.textContent = i + 1;
             label.classList.add('label')
             row.appendChild(label)
 
@@ -102,18 +108,25 @@ const displayManager = (function () {
                 let n = document.createElement("div");
                 n.dataset.one = i;
                 n.dataset.two = j;
+                n.style.backgroundColor = 'gray';
                 computerCells.push(n)
+                
                 if(computerBoard.board[i][j]){
-                    n.style.backgroundColor = 'gray';
                     n.addEventListener('click', () => {
                         n.style.backgroundColor = '#FF7F7F';
-                        game(n.dataset.one, n.dataset.two)
+                        if(counter === 5){
+                            game(n.dataset.one, n.dataset.two)
+                        }
+                        
                     })
                 }
                 else{
                     n.addEventListener('click', () => {
                         n.style.backgroundColor = 'white';
-                        game(n.dataset.one, n.dataset.two)
+                        if(counter === 5){
+                            game(n.dataset.one, n.dataset.two)
+                        }
+                        
                     })
                 }
                 n.classList.add('cell')
@@ -122,7 +135,7 @@ const displayManager = (function () {
             cwrapper.appendChild(row)
         }
     }
-    return {displayBoards}
+    return {displayBoards, clearBoard}
 })();
 
 
@@ -198,18 +211,19 @@ function randomCPUship(len){
     }
 }
 function game(one, two){
-    console.log('running')
-    disableComputer();
-    computerBoard.recieveAttack([Number(one), Number(two)]);
-    if(computerBoard.allOcean){
-        alert('player has won')
-    }
-    computerMove();
-    if(playerBoard.allOcean){
-            alert('computer has won')
+        console.log('running')
+        disableComputer();
+        computerBoard.recieveAttack([Number(one), Number(two)]);
+        if(computerBoard.allOcean){
+            alert('player has won')
         }
-    enableComputer();
-}
+        computerMove();
+        if(playerBoard.allOcean){
+                alert('computer has won')
+            }
+        enableComputer();
+    }
+
 function main(){
     randomCPUship(5)
     randomCPUship(4)
@@ -218,7 +232,93 @@ function main(){
     randomCPUship(2)
     displayManager.displayBoards()
 }
-main()
+displayManager.displayBoards()
+disableComputer()
+let form = document.querySelector('.place');
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let sel = Number(document.getElementById('len').value);
+    let startingCoord = document.getElementById('startingCoord').value;
+    let dir;
+    let ele = document.getElementsByName('direction');
+    for(let i = 0; i < ele.length; i++){
+        if(ele[i].checked){
+            dir = ele[i].value;
+        }
+    }
+    let selection = document.getElementById('len')
+    let letter = startingCoord.substring(0,1);
+    let num = null;
+    switch (letter){
+        case 'A':
+            num = 0;
+            break;
+        case 'B':
+            num = 1;
+            break;
+        case 'C':
+            num = 2;
+            break;
+        case 'D':
+            num = 3;
+            break;
+        case 'E':
+            num = 4;
+            break;
+        case 'F':
+            num = 5;
+            break;
+        case 'G':
+            num = 6;
+            break;
+        case 'H':
+            num = 7;
+            break;
+        case 'I':
+            num = 8;
+            break;
+        case 'J':
+            num = 9;
+            break;
+    }
+    if(num === null){
+        alert('Please enter a valid coordinate')
+    }
+    let n = Number(startingCoord.substring(1,2))
+    let coord1 = [];
+    
+    let coord2 = [];
+    if(dir === 'vertical'){
+        coord1.push(n - 1)
+        coord1.push(num)
+        coord2.push(coord1[0] + sel - 1)
+        coord2.push(coord1[1])
+    }
+    else if(dir === 'horizontal'){
+        coord1.push(n - 1)
+        coord1.push(num)
+        coord2.push(coord1[0])
+        coord2.push(coord1[1] + sel - 1)
+        
+        
+        
+    }
+    try{
+        playerBoard.placeShip(coord1, coord2)
+        displayManager.clearBoard()
+        displayManager.displayBoards();
+        
+        selection.remove(selection.selectedIndex)
+        counter++
+        console.log(counter)
+    }
+    catch{
+        alert('ships cannot overlap or go out of bounds')
+    
+    }
+    if(counter === 5){
+        enableComputer()
+    }
 
-// let coord1 = prompt("Coord 1");
-// console.log(coord1)
+})
+
