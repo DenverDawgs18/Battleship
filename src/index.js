@@ -284,7 +284,14 @@ form.addEventListener('submit', (e) => {
     if(num === null){
         alert('Please enter a valid coordinate')
     }
-    let n = Number(startingCoord.substring(1,2))
+    let n;
+    if(startingCoord.length === 2){
+        n = Number(startingCoord.substring(1,2));
+    }
+    else{
+        n = Number(startingCoord.substring(1,3));
+    }
+    
     let coord1 = [];
     
     let coord2 = [];
